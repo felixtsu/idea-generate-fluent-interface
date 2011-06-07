@@ -4,14 +4,13 @@
     <description>helps you to create Fluent Interface property accessor
         methods.
     </description>
-    <version>0.7</version>
+    <version>0.7.1</version>
     <vendor email="humaeks@gmail.com"
             url="http://code.google.com/p/idea-generate-fluent-interface/">
         Felix.TSU
     </vendor>
     <idea-version since-build="8000"/>
 
-    <depends>com.intellij.modules.java</depends>
     <actions>
         <!-- Add your actions here -->
         <action id="com.googlecode.generate.fluent.interface"
