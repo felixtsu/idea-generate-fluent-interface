@@ -119,12 +119,197 @@
   <component name="ProjectResources">
     <default-html-doctype>http://www.w3.org/1999/xhtml</default-html-doctype>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="IDEA" project-jdk-type="IDEA JDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="IDEA IU-90.193" project-jdk-type="IDEA JDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="branchMap">
+                <map>
+                  <entry key="https://idea-generate-fluent-interface.googlecode.com/svn/branches">
+                    <value>
+                      <list />
+                    </value>
+                  </entry>
+                  <entry key="https://idea-generate-fluent-interface.googlecode.com/svn/tags">
+                    <value>
+                      <list />
+                    </value>
+                  </entry>
+                  <entry key="https://idea-generate-fluent-interface.googlecode.com/svn/wiki">
+                    <value>
+                      <list />
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="branchUrls">
+                <list>
+                  <option value="https://idea-generate-fluent-interface.googlecode.com/svn/branches" />
+                  <option value="https://idea-generate-fluent-interface.googlecode.com/svn/tags" />
+                  <option value="https://idea-generate-fluent-interface.googlecode.com/svn/wiki" />
+                </list>
+              </option>
+              <option name="trunkUrl" value="https://idea-generate-fluent-interface.googlecode.com/svn/trunk" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
   <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="" />
+    <mapping directory="" vcs="svn" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
+  <component name="libraryTable">
+    <library name="lib">
+      <CLASSES>
+        <root url="file://$PROJECT_DIR$/lib" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/testng/testSources" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/samples/vfs/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/xslt-debugger/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/ui-designer/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/testng_rt/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/ui-designer/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/testng/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/samples/conditionalOperatorConvertor/source" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/samples/conditionalOperatorConvertor/testSource" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/samples/actions/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/tools/lexer/jflex-1.4/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/samples/applicationConfigurable/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/samples/toolWindow/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/samples/textEditor/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/samples/plugin/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/samples/comparingReferences/source" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/samples/comparingReferences/testSource" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/platform-impl/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/jsp-base-openapi/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/jsp-openapi/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/platform-impl/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/groovy/test" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/groovy/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/java-tests/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/svn4idea/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/compiler/notNull/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/idea-ui/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/platform-api/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/platform-api/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/maven/maven2-server-impl/test" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/hg4idea/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/maven/maven2-server-impl/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/hg4idea/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/IntelliLang/xml-support" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/smRunner/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/RegExpSupport/test" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/RegExpSupport/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/github/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/platform-main/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/openapi/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/IdeaTestAssistant/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/maven/maven-server-api/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/jsp-spi/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/IdeaTestAssistant/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/properties/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/junit/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/junit_rt/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/spellchecker/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/spellchecker/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/testFramework/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/svn4idea/testSource" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/properties/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/groovy/hotswap/agentSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/relaxng/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/relaxng/test" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/forms_rt/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/vcs-impl/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/compiler/forms-compiler/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/xdebugger-api/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/util/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/IntentionPowerPak/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/util/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/IntentionPowerPak/test" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/compiler/forms-compiler/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/vcs-api/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/xml/impl/resources" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/ant/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/xml/impl/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/groovy/rt/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/copyright/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/xml/openapi/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/commander/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/xdebugger-impl/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/xdebugger-impl/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/eclipse/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/xslt-debugger/rt/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/extensions/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/extensions/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/xpath/xpath-lang/test" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/xpath/xpath-lang/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/eclipse/testSources" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/execution/openapi/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/xpath/xpath-view/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/git4idea/tests" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/xpath/xslt-rt/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/git4idea/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/lvcs-api/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/lvcs-impl/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/lang-impl/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/IntelliLang/java-support" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/lang-impl/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/IntelliLang/javaee-support" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/smRunner/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/IntelliLang/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/InspectionGadgets/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/maven/src/test/java" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/InspectionGadgets/testsrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/lvcs-impl/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/tasks/tasks-core/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/maven/src/main/java" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/tasks/tasks-api/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/testFramework/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/tasks/tasks-tests/test" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/tasks/tasks-java/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/compiler/javac2/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/lang-api/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/usageView/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/IntentionPowerPak/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/usageView/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/java-i18n/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/testFramework/bootstrap/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/tasks/jira-connector/src/atlassian/java" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/java-i18n/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/tasks/jira-connector/src/main/java" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/testRunner/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/maven/maven3-server-impl/test" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/maven/maven3-server-impl/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/bootstrap/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/boot/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/compiler/impl/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/ant/tests/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/platform/annotations/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/generate-tostring/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/debugger/impl/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/android/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/debugger/openapi/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/plugins/android/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/xml/dom-impl/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/xml/dom-openapi/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/images/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/execution/impl/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/compiler/openapi/src" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/java-impl/testSrc" />
+        <root url="file://$PROJECT_DIR$/../IDEA.community/java/java-impl/src" />
+      </SOURCES>
+      <jarDirectory url="file://$PROJECT_DIR$/lib" recursive="false" />
+    </library>
+  </component>
 </project>
 

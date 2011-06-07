@@ -18,6 +18,8 @@ class GenerateFluentInterfaceWorker {
     private PsiClass psiClass;
     private CodeStyleManager codeStyleManager;
 
+
+
 // --------------------------- CONSTRUCTORS ---------------------------
 
     public GenerateFluentInterfaceWorker(final Project project,
