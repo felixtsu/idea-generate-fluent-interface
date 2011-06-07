@@ -33,7 +33,7 @@ import java.util.List;
 class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler {
 // ------------------------------ FIELDS ------------------------------
 
-    private static final Logger logger = Logger.getInstance(GenerateFluentInterfaceActionHandlerImpl.class);
+    private static final Logger logger = Logger.getInstance("#com.googlecode.generatefluentinterface.GenerateFluentInterfaceActionHandlerImpl");
 
 // --------------------------- CONSTRUCTORS ---------------------------
 

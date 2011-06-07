@@ -20,6 +20,7 @@ class GenerateFluentInterfaceWorker {
 
 
 
+
 // --------------------------- CONSTRUCTORS ---------------------------
 
     public GenerateFluentInterfaceWorker(final Project project,
@@ -33,8 +34,8 @@ class GenerateFluentInterfaceWorker {
 
     public void execute(final PsiField[] candidateFields) {
         for (PsiField candidateField : candidateFields) {
-            createMethodFromText(candidateField, buildReadMethodText(candidateField));
-            createMethodFromText(candidateField, buildWriteMethodText(candidateField));
+            createMethodFromText(buildReadMethodText(candidateField));
+            createMethodFromText(buildWriteMethodText(candidateField));
         }
     }
 
@@ -46,7 +47,7 @@ class GenerateFluentInterfaceWorker {
                 "}";
     }
 
-    private void createMethodFromText(final PsiField candidateField, String methodText) {
+    private void createMethodFromText(String methodText) {
         PsiMethod psiMethod = elementFactory.createMethodFromText(methodText, null);
         codeStyleManager.reformat(psiMethod);
         psiClass.add(psiMethod);
