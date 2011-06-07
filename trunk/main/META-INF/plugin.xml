@@ -1,30 +1,30 @@
-<idea-plugin version="2">
-  <name>Generate.Fluent.Interface</name>
-  <description>helps you to create Fluent Interface property accessor methods.</description>
-  <version>0.4</version>
-  <vendor>Felix.TSU</vendor>
-  <idea-version since-build="8000"/>
+<idea-plugin url="http://code.google.com/p/idea-generate-fluent-interface/"
+             version="3">
+    <name>Generate.Fluent.Interface</name>
+    <description>helps you to create Fluent Interface property accessor
+        methods.
+    </description>
+    <version>0.6</version>
+    <vendor email="humaeks@gmail.com"
+            url="http://code.google.com/p/idea-generate-fluent-interface/">
+        Felix.TSU
+    </vendor>
+    <idea-version since-build="8000"/>
 
-  <application-components>
-    <!-- Add your application components here -->
-  </application-components>
+    <depends>com.intellij.modules.java</depends>
+    <actions>
+        <!-- Add your actions here -->
+        <action id="com.googlecode.generate.fluent.interface"
+                class="com.googlecode.generatefluentinterface.GenerateFluentInterfaceAction"
+                text="Fluent Interface Methods..."
+                description="generate fluent interface style properties accessors">
+            <add-to-group group-id="JavaGenerateGroup1" anchor="before"
+                          relative-to-action="GenerateEquals"/>
+        </action>
+    </actions>
 
-  <project-components>
-    <!-- Add your project components here -->
-  </project-components>
 
-  <actions>
-    <!-- Add your actions here -->
-      <action id="com.googlecode.generate.fluent.interface"
-              class="com.googlecode.generatefluentinterface.GenerateFluentInterfaceAction"
-              text="Fluent Interface Methods..."
-              description="generate fluent interface style properties accessors">
-          <add-to-group group-id="JavaGenerateGroup1" anchor="before"
-                        relative-to-action="GenerateEquals"/>
-      </action>
-  </actions>
-
-  <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
 </idea-plugin>
