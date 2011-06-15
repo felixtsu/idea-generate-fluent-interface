@@ -3,7 +3,6 @@ package com.googlecode.generatefluentinterface;
 import com.intellij.codeInsight.generation.PsiFieldMember;
 import com.intellij.codeInsight.hint.HintManager;
 import com.intellij.ide.util.MemberChooser;
-import com.intellij.ide.util.MemberChooserBuilder;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
@@ -14,8 +13,6 @@ import com.intellij.openapi.editor.actionSystem.EditorWriteActionHandler;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
 import com.intellij.psi.util.PsiTreeUtil;
-import com.intellij.ui.SpeedSearchBase;
-import com.intellij.ui.TreeSpeedSearch;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
@@ -50,7 +47,13 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
 
         PsiClass clazz = getSubjectClass(editor, dataContext);
 
-        assert clazz != null;
+        if (clazz == null) {
+            return;
+        }
+
+        if (clazz.isInterface()) {
+            HintManager.getInstance().showErrorHint(editor, "Can't generate fluent interface methods in an interface.");
+        }
 
         doExecuteAction(project, clazz, editor);
     }
@@ -74,8 +77,8 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
             return null;
         }
 
-        // must not be an interface
-        return clazz.isInterface() ? null : clazz;
+        return clazz;
+
     }
 
     private void doExecuteAction(final Project project, final PsiClass psiClass, final Editor editor) {
@@ -139,24 +142,18 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
                     return;
                 }
 
-                MemberChooserBuilder<PsiFieldMember> builder = new MemberChooserBuilder<PsiFieldMember>(project);
-                builder.copyJavadocVisible(false);
-                builder.allowEmptySelection(false);
-                builder.allowMultiSelection(true);
-                builder.setTitle("generate fluent interface members");
-
-                MemberChooser<PsiFieldMember> chooser
-                        = builder.createBuilder(classMembers);
+                GenerateFluentInterfaceMemberChooser chooser
+                        = new GenerateFluentInterfaceMemberChooser(classMembers, project);
+                chooser.setTitle("generate fluent interface members");
                 chooser.selectElements(classMembers);
-
-                logger.info("result = " + SpeedSearchBase.class.isAssignableFrom(TreeSpeedSearch.class));
-
 
                 chooser.show();
 
 
                 if (chooser.getExitCode() == MemberChooser.OK_EXIT_CODE) {
                     final List<PsiFieldMember> list = chooser.getSelectedElements();
+                    final String setterPrefix = chooser.getSetterPrefix();
+                    final boolean generateGetter = chooser.generateGetters();
                     if (list == null) {
                         return;
                     }
@@ -166,18 +163,24 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
                         chosenFields.add(classMember.getElement());
                     }
 
-                    executeGenerateLater(project, clazz, chosenFields.toArray(new PsiField[chosenFields.size()]));
+                    executeGenerateLater(project, clazz, chosenFields.toArray(new PsiField[chosenFields.size()]), setterPrefix, generateGetter);
                 }
             }
         });
     }
 
-    private void executeGenerateLater(final Project project, final PsiClass clazz, final PsiField[] chosenFields) {
+    private void executeGenerateLater(final Project project,
+                                      final PsiClass clazz,
+                                      final PsiField[] chosenFields,
+                                      final String setterPrefix,
+                                      final boolean generateGetter) {
         CommandProcessor.getInstance().executeCommand(project, new Runnable() {
                     public void run() {
                         ApplicationManager.getApplication().runWriteAction(new Runnable() {
                             public void run() {
-                                new GenerateFluentInterfaceWorker(project, clazz).execute(chosenFields);
+                                new GenerateFluentInterfaceWorker(project, clazz,
+                                        setterPrefix, generateGetter)
+                                        .execute(chosenFields);
                             }
                         });
                     }
