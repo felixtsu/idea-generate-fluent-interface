@@ -2,6 +2,7 @@ package com.googlecode.generatefluentinterface;
 
 import com.intellij.codeInsight.generation.PsiFieldMember;
 import com.intellij.ide.util.MemberChooser;
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.project.Project;
 
 import javax.swing.*;
@@ -53,11 +54,11 @@ public class GenerateFluentInterfaceMemberChooser extends MemberChooser<PsiField
 // -------------------------- INNER CLASSES --------------------------
 
     protected class AdvanceOptionPanel extends JPanel {
-        private final JTextField prefix;
+        private final JTextField setterPrefix;
         private final JCheckBox generateGetters;
 
         public String getSetterPrefix() {
-            return prefix.getText().replaceAll("\\s", "");
+            return setterPrefix.getText().replaceAll("\\s", "");
         }
 
         public boolean generateGetters() {
@@ -67,21 +68,27 @@ public class GenerateFluentInterfaceMemberChooser extends MemberChooser<PsiField
         public AdvanceOptionPanel() {
             super(new GridBagLayout());
 
-            prefix = new JTextField();
+            GenerateFluentInterfaceApplicationComponent applicationComponent
+                    = ApplicationManager.getApplication()
+                    .getComponent(GenerateFluentInterfaceApplicationComponent.class);
+
+            setterPrefix = new JTextField();
 
             JLabel label = new JLabel("setters prefix:");
             label.setDisplayedMnemonic(KeyEvent.VK_P);
-            label.setLabelFor(prefix);
+            label.setLabelFor(setterPrefix);
+            setterPrefix.setText(applicationComponent.getSetterPrefix());
 
             generateGetters = new JCheckBox("generate getters");
             generateGetters.setMnemonic(KeyEvent.VK_G);
+            generateGetters.setSelected(applicationComponent.isGeneratingGetters());
 
             final Insets insets = new Insets(5, 0, 0, 0);
             add(generateGetters, new GridBagConstraints(0, 0, GridBagConstraints.REMAINDER, 1, 0.1, 0, GridBagConstraints.WEST, GridBagConstraints.NONE,
                     insets, 0, 0));
             add(label, new GridBagConstraints(1, 0, 1, 1, 0.1, 0, GridBagConstraints.WEST, GridBagConstraints.NONE,
                     insets, 0, 0));
-            add(prefix, new GridBagConstraints(2, 0, 1, 1, 0.8, 0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
+            add(setterPrefix, new GridBagConstraints(2, 0, 1, 1, 0.8, 0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
                     insets, 20, 0));
 
 

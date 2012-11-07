@@ -26,4 +26,11 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
     </extensions>
+    <application-components>
+        <component>
+            <implementation-class>
+                com.googlecode.generatefluentinterface.GenerateFluentInterfaceApplicationComponent
+            </implementation-class>
+        </component>
+    </application-components>
 </idea-plugin>
