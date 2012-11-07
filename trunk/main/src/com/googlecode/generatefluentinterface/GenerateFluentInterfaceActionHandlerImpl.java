@@ -11,7 +11,12 @@ import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.actionSystem.EditorWriteActionHandler;
 import com.intellij.openapi.project.Project;
-import com.intellij.psi.*;
+import com.intellij.psi.PsiClass;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiField;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiModifier;
+import com.intellij.psi.PsiModifierList;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.Nullable;
 
@@ -157,6 +162,13 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
                     if (list == null) {
                         return;
                     }
+
+                    GenerateFluentInterfaceApplicationComponent applicationComponent
+                            = ApplicationManager.getApplication()
+                            .getComponent(GenerateFluentInterfaceApplicationComponent.class);
+
+                    applicationComponent.updateIsGeneratingGetters(generateGetter);
+                    applicationComponent.updateSetterPrefix(setterPrefix);
 
                     final List<PsiField> chosenFields = new LinkedList<PsiField>();
                     for (PsiFieldMember classMember : list) {
