@@ -8,9 +8,9 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>
- * <p> Date: 12-11-7 Time: обнГ5:05 </p>
+ * <p> Date: 12-11-7 Time: 5:05 </p>
  *
- * @author huaibi.zdj
+ * @author Felix.TSU
  */
 
 @State(
