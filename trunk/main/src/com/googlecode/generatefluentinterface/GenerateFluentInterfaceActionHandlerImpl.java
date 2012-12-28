@@ -10,7 +10,12 @@ import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.actionSystem.EditorWriteActionHandler;
 import com.intellij.openapi.project.Project;
-import com.intellij.psi.*;
+import com.intellij.psi.PsiClass;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiField;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiModifier;
+import com.intellij.psi.PsiModifierList;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.Nullable;
 
@@ -93,7 +98,7 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
         }
 
         chooseMemberAndRun(project,
-                psiClass,
+                editor, psiClass,
                 psiFieldMembers.toArray(new PsiFieldMember[psiFieldMembers.size()])
         );
     }
@@ -138,7 +143,9 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
         return result;
     }
 
-    private void chooseMemberAndRun(final Project project, final PsiClass clazz, final PsiFieldMember[] classMembers) {
+    private void chooseMemberAndRun(final Project project,
+                                    final Editor editor, final PsiClass clazz,
+                                    final PsiFieldMember[] classMembers) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 if (project.isDisposed()) {
@@ -173,14 +180,19 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
                         chosenFields.add(classMember.getElement());
                     }
 
-                    executeGenerateLater(project, clazz, chosenFields.toArray(new PsiField[chosenFields.size()]), setterPrefix, generateGetter);
+                    executeGenerateLater(project,
+                            editor, clazz,
+                            chosenFields.toArray(new PsiField[chosenFields.size()]),
+                            setterPrefix,
+                            generateGetter
+                    );
                 }
             }
         });
     }
 
     private void executeGenerateLater(final Project project,
-                                      final PsiClass clazz,
+                                      final Editor editor, final PsiClass clazz,
                                       final PsiField[] chosenFields,
                                       final String setterPrefix,
                                       final boolean generateGetter) {
@@ -188,7 +200,7 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
             public void run() {
                 ApplicationManager.getApplication().runWriteAction(new Runnable() {
                     public void run() {
-                        new GenerateFluentInterfaceWorker(project, clazz,
+                        new GenerateFluentInterfaceWorker(project, editor, clazz,
                                 setterPrefix, generateGetter)
                                 .execute(chosenFields);
                     }
