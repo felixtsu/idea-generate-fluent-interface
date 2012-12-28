@@ -7,6 +7,8 @@ import com.intellij.openapi.project.Project;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 
 /**
@@ -78,6 +80,16 @@ public class GenerateFluentInterfaceMemberChooser extends MemberChooser<PsiField
             label.setDisplayedMnemonic(KeyEvent.VK_P);
             label.setLabelFor(setterPrefix);
             setterPrefix.setText(applicationComponent.getSetterPrefix());
+            setterPrefix.addFocusListener(new FocusListener() {
+                @Override
+                public void focusGained(final FocusEvent e) {
+                    setterPrefix.selectAll();
+                }
+
+                @Override
+                public void focusLost(final FocusEvent e) {
+                }
+            });
 
             generateGetters = new JCheckBox("generate getters");
             generateGetters.setMnemonic(KeyEvent.VK_G);
