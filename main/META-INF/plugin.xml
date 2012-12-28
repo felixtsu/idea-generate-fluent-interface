@@ -4,7 +4,7 @@
     <description>helps you to create Fluent Interface property accessor
         methods.
     </description>
-    <version>0.7.4</version>
+    <version>0.7.8</version>
     <vendor email="humaeks@gmail.com"
             url="http://code.google.com/p/idea-generate-fluent-interface/">
         Felix.TSU
