@@ -3,15 +3,8 @@ package com.googlecode.generatefluentinterface;
 import com.intellij.openapi.editor.CaretModel;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
-import com.intellij.psi.JavaPsiFacade;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiElementFactory;
-import com.intellij.psi.PsiField;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiMethod;
+import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.CodeStyleManager;
-import com.sixrr.rpp.intention.PsiElementPredicate;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -87,16 +80,13 @@ class GenerateFluentInterfaceWorker {
         psiClass.addAfter(psiMethod, element);
     }
 
-    private static final PsiElementPredicate predicate = new PsiElementPredicate() {
-        @Override
-        public boolean satisfiedBy(final PsiElement psiElement) {
-            if (psiElement.getParent() == null) {
-                return true;
-            } else {
-                return psiElement instanceof PsiMethod || psiElement instanceof PsiField;
-            }
+    public boolean isValidElement(final PsiElement psiElement) {
+        if (psiElement.getParent() == null) {
+            return true;
+        } else {
+            return psiElement instanceof PsiMethod || psiElement instanceof PsiField;
         }
-    };
+    }
 
     @Nullable
     PsiElement findMatchingElement(PsiFile file,
@@ -105,7 +95,7 @@ class GenerateFluentInterfaceWorker {
         final int position = caretModel.getOffset();
         PsiElement element = file.findElementAt(position);
         while (element != null) {
-            if (predicate.satisfiedBy(element)) {
+            if (isValidElement(element)) {
                 return element;
             } else {
                 element = element.getPrevSibling();
