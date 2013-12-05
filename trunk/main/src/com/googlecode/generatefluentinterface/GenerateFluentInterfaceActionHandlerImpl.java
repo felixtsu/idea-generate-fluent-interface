@@ -10,12 +10,7 @@ import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.actionSystem.EditorWriteActionHandler;
 import com.intellij.openapi.project.Project;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiField;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiModifier;
-import com.intellij.psi.PsiModifierList;
+import com.intellij.psi.*;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.Nullable;
 
@@ -104,18 +99,16 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
     }
 
     private Collection<PsiField> pickupCandidateFields(final PsiClass psiClass) {
-        final List<PsiField> privateOrProtectedNonFinalInstanceFields
-                = getPrivateOrProtectedNonFinalInstanceFields(psiClass);
-
-        return filterExistCandidates(psiClass, privateOrProtectedNonFinalInstanceFields);
+        final List<PsiField> fields = getCandidateFields(psiClass);
+        return filterExistCandidates(psiClass, fields);
     }
 
-    private List<PsiField> getPrivateOrProtectedNonFinalInstanceFields(final PsiClass psiClass) {
-        PsiField[] allFields = psiClass.getFields();
+    private List<PsiField> getCandidateFields(final PsiClass psiClass) {
+        PsiField[] allFields = psiClass.getAllFields();
         List<PsiField> candidateFields = new LinkedList<PsiField>();
         for (PsiField field : allFields) {
             PsiModifierList psiModifierList = field.getModifierList();
-            if (psiModifierList != null && isPrivateOrProtectedNonFinalInstance(psiModifierList)) {
+            if (psiModifierList != null && isCandidateField(psiModifierList)) {
                 candidateFields.add(field);
             }
         }
@@ -123,11 +116,9 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
         return candidateFields;
     }
 
-    private boolean isPrivateOrProtectedNonFinalInstance(final PsiModifierList psiModifierList) {
-        return (psiModifierList.hasModifierProperty(PsiModifier.PRIVATE) ||
-                psiModifierList.hasModifierProperty(PsiModifier.PROTECTED)) &&
-                !(psiModifierList.hasModifierProperty(PsiModifier.FINAL)) &&
-                !(psiModifierList.hasModifierProperty(PsiModifier.STATIC));
+    private boolean isCandidateField(final PsiModifierList psiModifierList) {
+        return (!(psiModifierList.hasModifierProperty(PsiModifier.FINAL)) &&
+                !(psiModifierList.hasModifierProperty(PsiModifier.STATIC)));
     }
 
     private Collection<PsiField> filterExistCandidates(final PsiClass psiClass, final List<PsiField> candidateFields) {
