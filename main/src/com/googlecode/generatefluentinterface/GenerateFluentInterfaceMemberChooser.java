@@ -53,11 +53,16 @@ public class GenerateFluentInterfaceMemberChooser extends MemberChooser<PsiField
         return this.advanceOptionPanel.generateGetters();
     }
 
+    public boolean useSetters() {
+        return this.advanceOptionPanel.useSetters();
+    }
+
 // -------------------------- INNER CLASSES --------------------------
 
     protected class AdvanceOptionPanel extends JPanel {
         private final JTextField setterPrefix;
         private final JCheckBox generateGetters;
+        private final JCheckBox invokeExistingSetters;
 
         public String getSetterPrefix() {
             return setterPrefix.getText().replaceAll("\\s", "");
@@ -65,6 +70,10 @@ public class GenerateFluentInterfaceMemberChooser extends MemberChooser<PsiField
 
         public boolean generateGetters() {
             return this.generateGetters.isSelected();
+        }
+
+        public boolean useSetters() {
+            return this.invokeExistingSetters.isSelected();
         }
 
         public AdvanceOptionPanel() {
@@ -95,6 +104,10 @@ public class GenerateFluentInterfaceMemberChooser extends MemberChooser<PsiField
             generateGetters.setMnemonic(KeyEvent.VK_G);
             generateGetters.setSelected(applicationComponent.isGeneratingGetters());
 
+            invokeExistingSetters = new JCheckBox("invoke existing setters");
+            invokeExistingSetters.setMnemonic(KeyEvent.VK_S);
+            invokeExistingSetters.setSelected(applicationComponent.isInvokeExistingSetters());
+
             final Insets insets = new Insets(5, 0, 0, 0);
             add(generateGetters, new GridBagConstraints(0, 0, GridBagConstraints.REMAINDER, 1, 0.1, 0, GridBagConstraints.WEST, GridBagConstraints.NONE,
                     insets, 0, 0));
@@ -102,8 +115,8 @@ public class GenerateFluentInterfaceMemberChooser extends MemberChooser<PsiField
                     insets, 0, 0));
             add(setterPrefix, new GridBagConstraints(2, 0, 1, 1, 0.8, 0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
                     insets, 20, 0));
-
-
+            add(invokeExistingSetters, new GridBagConstraints(0, 1, GridBagConstraints.REMAINDER, 1, 0.1, 0, GridBagConstraints.WEST, GridBagConstraints.NONE,
+                    insets, 0, 0));
         }
     }
 }
