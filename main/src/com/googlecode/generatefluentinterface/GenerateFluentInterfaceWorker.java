@@ -125,7 +125,7 @@ class GenerateFluentInterfaceWorker {
         if (invokeExistingSetters) {
             m += retrieveExistingSetterName(candidateField) + "(" + candidateField.getName() + ");";
         } else {
-            m += "this." + candidateField.getName() + " = " + candidateField.getName() + ;";
+            m += "this." + candidateField.getName() + " = " + candidateField.getName() + ";";
         }
         m +=" return this; }";
 
