@@ -95,7 +95,8 @@ class GenerateFluentInterfaceWorker {
         if (psiElement.getParent() == null) {
             return true;
         } else {
-            return psiElement instanceof PsiMethod || psiElement instanceof PsiField || psiElement instanceof PsiComment;
+            return psiElement instanceof PsiMethod
+                    || psiElement instanceof PsiField;
         }
     }
 
@@ -124,7 +125,7 @@ class GenerateFluentInterfaceWorker {
         if (invokeExistingSetters) {
             m += retrieveExistingSetterName(candidateField) + "(" + candidateField.getName() + ");";
         } else {
-            m += "this." + candidateField.getName() + " = " + candidateField.getName() + ");";
+            m += "this." + candidateField.getName() + " = " + candidateField.getName() + ";";
         }
         m +=" return this; }";
 

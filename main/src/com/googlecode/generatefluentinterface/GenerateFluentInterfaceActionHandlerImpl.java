@@ -40,7 +40,9 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
 // -------------------------- OTHER METHODS --------------------------
 
     @Override
-    public void executeWriteAction(final Editor editor, Caret caret, final DataContext dataContext) {
+    public void executeWriteAction(final Editor editor,
+                                   final Caret caret,
+                                   final DataContext dataContext) {
         final Project project = LangDataKeys.PROJECT.getData(dataContext);
 
         assert project != null;
