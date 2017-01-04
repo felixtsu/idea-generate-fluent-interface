@@ -95,7 +95,8 @@ class GenerateFluentInterfaceWorker {
         if (psiElement.getParent() == null) {
             return true;
         } else {
-            return psiElement instanceof PsiMethod || psiElement instanceof PsiField || psiElement instanceof PsiComment;
+            return psiElement instanceof PsiMethod
+                    || psiElement instanceof PsiField;
         }
     }
 

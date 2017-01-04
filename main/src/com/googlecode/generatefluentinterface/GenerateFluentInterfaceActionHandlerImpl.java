@@ -7,6 +7,7 @@ import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandProcessor;
+import com.intellij.openapi.editor.Caret;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.actionSystem.EditorWriteActionHandler;
 import com.intellij.openapi.project.Project;
@@ -38,7 +39,9 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
 // -------------------------- OTHER METHODS --------------------------
 
     @Override
-    public void executeWriteAction(final Editor editor, final DataContext dataContext) {
+    public void executeWriteAction(final Editor editor,
+                                   final Caret caret,
+                                   final DataContext dataContext) {
         final Project project = LangDataKeys.PROJECT.getData(dataContext);
 
         assert project != null;
