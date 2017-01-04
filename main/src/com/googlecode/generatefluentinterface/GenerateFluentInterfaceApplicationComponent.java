@@ -76,6 +76,10 @@ public class GenerateFluentInterfaceApplicationComponent
         return this.state.isGenerateGetters();
     }
 
+    public boolean isInvokeExistingSetters() {
+        return this.state.isInvokeExistingSetters();
+    }
+
     public void updateSetterPrefix(String setterPrefix) {
         this.state.setSetterPrefix(setterPrefix);
     }
@@ -84,11 +88,16 @@ public class GenerateFluentInterfaceApplicationComponent
         this.state.setGenerateGetters(b);
     }
 
+    public void updateIsInvokeExistingSetters(boolean b) {
+        this.state.setInvokeExistingSetters(b);
+    }
+
 // -------------------------- INNER CLASSES --------------------------
 
     public static class State {
         private String setterPrefix;
         private boolean generateGetters;
+        private boolean invokeExistingSetters;
 
         public String getSetterPrefix() {
             return setterPrefix;
@@ -104,6 +113,14 @@ public class GenerateFluentInterfaceApplicationComponent
 
         public void setGenerateGetters(final boolean generateGetters) {
             this.generateGetters = generateGetters;
+        }
+
+        public boolean isInvokeExistingSetters() {
+            return invokeExistingSetters;
+        }
+
+        public void setInvokeExistingSetters(boolean invokeExistingSetters) {
+            this.invokeExistingSetters = invokeExistingSetters;
         }
     }
 }

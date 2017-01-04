@@ -1,11 +1,19 @@
 package com.googlecode.generatefluentinterface;
 
+import org.jetbrains.annotations.Nullable;
 import com.intellij.openapi.editor.CaretModel;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
-import com.intellij.psi.*;
+import com.intellij.psi.JavaPsiFacade;
+import com.intellij.psi.PsiClass;
+import com.intellij.psi.PsiComment;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiElementFactory;
+import com.intellij.psi.PsiField;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiMethod;
+import com.intellij.psi.PsiType;
 import com.intellij.psi.codeStyle.CodeStyleManager;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>
@@ -23,6 +31,7 @@ class GenerateFluentInterfaceWorker {
     private CodeStyleManager codeStyleManager;
     private String setterPrefix;
     private boolean generateGetter;
+    private boolean invokeExistingSetters;
     private Editor editor;
 
 
@@ -32,7 +41,8 @@ class GenerateFluentInterfaceWorker {
                                          final Editor editor,
                                          final PsiClass clazz,
                                          final String setterPrefix,
-                                         final boolean generateGetter) {
+                                         final boolean generateGetter,
+                                         final boolean invokeExistingSetters) {
         this.project = project;
         this.elementFactory = JavaPsiFacade.getElementFactory(project);
         this.editor = editor;
@@ -40,6 +50,7 @@ class GenerateFluentInterfaceWorker {
         this.codeStyleManager = CodeStyleManager.getInstance(project);
         this.setterPrefix = setterPrefix;
         this.generateGetter = generateGetter;
+        this.invokeExistingSetters = invokeExistingSetters;
     }
 
 // -------------------------- OTHER METHODS --------------------------
@@ -84,7 +95,7 @@ class GenerateFluentInterfaceWorker {
         if (psiElement.getParent() == null) {
             return true;
         } else {
-            return psiElement instanceof PsiMethod || psiElement instanceof PsiField;
+            return psiElement instanceof PsiMethod || psiElement instanceof PsiField || psiElement instanceof PsiComment;
         }
     }
 
@@ -107,10 +118,17 @@ class GenerateFluentInterfaceWorker {
     }
 
     private String buildWriteMethodText(final PsiField candidateField) {
-        return "public " + psiClass.getName() + " "
-                + constructSetterName(candidateField) + "(" + "final " + candidateField.getType().getCanonicalText() + " " + candidateField.getName() + "){"
-                + "this." + candidateField.getName() + " = " + candidateField.getName() + "; return this;" +
-                "}";
+        String m = "public " + psiClass.getName() + " "
+                + constructSetterName(candidateField) + "(" + "final " + candidateField.getType().getCanonicalText()
+                + " " + candidateField.getName() + "){";
+        if (invokeExistingSetters) {
+            m += retrieveExistingSetterName(candidateField) + "(" + candidateField.getName() + ");";
+        } else {
+            m += "this." + candidateField.getName() + " = " + candidateField.getName() + ");";
+        }
+        m +=" return this; }";
+
+        return m;
     }
 
     private String constructSetterName(final PsiField candidateField) {
@@ -120,6 +138,19 @@ class GenerateFluentInterfaceWorker {
         } else {
             return setterPrefix + upperFirstLetter(fieldName);
         }
+    }
+
+    /**
+     * Returns the name of the existing setter method for the specified field.
+     * Note: currently just the name is assembled as expected from the Java Bean standard
+     * rather than finding the method reference in the containing PsiClass.
+     */
+    private String retrieveExistingSetterName(final PsiField candidateField) {
+        String name = candidateField.getName();
+        if (candidateField.getType().isAssignableFrom(PsiType.BOOLEAN) && name != null && name.startsWith("is")) {
+            name = name.substring(2);
+        }
+        return "set" + upperFirstLetter(name);
     }
 
     private String upperFirstLetter(final String name) {

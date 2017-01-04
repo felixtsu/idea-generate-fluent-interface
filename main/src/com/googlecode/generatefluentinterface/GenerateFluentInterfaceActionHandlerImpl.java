@@ -155,6 +155,7 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
                     final List<PsiFieldMember> list = chooser.getSelectedElements();
                     final String setterPrefix = chooser.getSetterPrefix();
                     final boolean generateGetter = chooser.generateGetters();
+                    final boolean invokeExistingSetters = chooser.useSetters();
                     if (list == null) {
                         return;
                     }
@@ -165,6 +166,7 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
 
                     applicationComponent.updateIsGeneratingGetters(generateGetter);
                     applicationComponent.updateSetterPrefix(setterPrefix);
+                    applicationComponent.updateIsInvokeExistingSetters(invokeExistingSetters);
 
                     final List<PsiField> chosenFields = new LinkedList<PsiField>();
                     for (PsiFieldMember classMember : list) {
@@ -175,7 +177,8 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
                             editor, clazz,
                             chosenFields.toArray(new PsiField[chosenFields.size()]),
                             setterPrefix,
-                            generateGetter
+                            generateGetter,
+                            invokeExistingSetters
                     );
                 }
             }
@@ -186,13 +189,14 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
                                       final Editor editor, final PsiClass clazz,
                                       final PsiField[] chosenFields,
                                       final String setterPrefix,
-                                      final boolean generateGetter) {
+                                      final boolean generateGetter,
+                                      final boolean invokeExistingSetters) {
         CommandProcessor.getInstance().executeCommand(project, new Runnable() {
             public void run() {
                 ApplicationManager.getApplication().runWriteAction(new Runnable() {
                     public void run() {
                         new GenerateFluentInterfaceWorker(project, editor, clazz,
-                                setterPrefix, generateGetter)
+                                setterPrefix, generateGetter, invokeExistingSetters)
                                 .execute(chosenFields);
                     }
                 });
