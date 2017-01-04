@@ -1,12 +1,12 @@
-<idea-plugin url="http://code.google.com/p/idea-generate-fluent-interface/"
+<idea-plugin url="https://github.com/felixtsu/idea-generate-fluent-interface"
              version="3">
     <name>Generate.Fluent.Interface</name>
     <description>helps you to create Fluent Interface property accessor
         methods.
     </description>
-    <version>0.8.2</version>
+    <version>0.8.4</version>
     <vendor email="humaeks@gmail.com"
-            url="http://code.google.com/p/idea-generate-fluent-interface/">
+            url="https://github.com/felixtsu/idea-generate-fluent-interface">
         Felix.TSU
     </vendor>
     <idea-version since-build="99.18"/>
@@ -21,7 +21,6 @@
                           relative-to-action="GenerateEquals"/>
         </action>
     </actions>
-
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
