@@ -6,6 +6,7 @@ import com.intellij.ide.util.MemberChooser;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.application.ModalityState;
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.editor.Caret;
 import com.intellij.openapi.editor.Editor;
@@ -194,16 +195,21 @@ class GenerateFluentInterfaceActionHandlerImpl extends EditorWriteActionHandler 
                                       final String setterPrefix,
                                       final boolean generateGetter,
                                       final boolean invokeExistingSetters) {
-        CommandProcessor.getInstance().executeCommand(project, new Runnable() {
+        ApplicationManager.getApplication().invokeLater(new Runnable() {
+            @Override
             public void run() {
-                ApplicationManager.getApplication().runWriteAction(new Runnable() {
+                CommandProcessor.getInstance().executeCommand(project, new Runnable() {
                     public void run() {
-                        new GenerateFluentInterfaceWorker(project, editor, clazz,
-                                setterPrefix, generateGetter, invokeExistingSetters)
-                                .execute(chosenFields);
+                        ApplicationManager.getApplication().runWriteAction(new Runnable() {
+                            public void run() {
+                                new GenerateFluentInterfaceWorker(project, editor, clazz,
+                                        setterPrefix, generateGetter, invokeExistingSetters)
+                                        .execute(chosenFields);
+                            }
+                        });
                     }
-                });
+                }, "GenerateFluentInterface", null);
             }
-        }, "GenerateFluentInterface", null);
+        }, ModalityState.NON_MODAL);
     }
 }
